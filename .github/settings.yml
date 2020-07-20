@@ -122,13 +122,13 @@ branches:
   - name: develop
     protection:
       # Required. Require at least one approving review on a pull request, before merging. Set to null to disable.
-      required_pull_request_reviews:
-        # The number of approvals required. (1-6)
-        required_approving_review_count: 1
-        # Dismiss approved reviews automatically when a new commit is pushed.
-        dismiss_stale_reviews: true
-        # Blocks merge until code owners have reviewed.
-        require_code_owner_reviews: true
+      required_pull_request_reviews: null
+      #  # The number of approvals required. (1-6)
+      #  required_approving_review_count: 1
+      #  # Dismiss approved reviews automatically when a new commit is pushed.
+      #  dismiss_stale_reviews: true
+      #  # Blocks merge until code owners have reviewed.
+      #  require_code_owner_reviews: true
       # Required. Require status checks to pass before merging. Set to null to disable
       required_status_checks:
         # Required. Require branches to be up to date before merging.
