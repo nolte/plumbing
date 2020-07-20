@@ -135,5 +135,5 @@ branches:
         strict: true
         # Required. The list of status checks to require in order to merge into this branch
         contexts:
-          - build
+          - Build
       restrictions: null
