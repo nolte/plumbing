@@ -1,4 +1,4 @@
-name: Release Drafter
+name: GitHub Project Maintenance
 
 on:
   push:
@@ -7,6 +7,14 @@ on:
       - develop
 
 jobs:
+  probot-settings:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run probot-settings
+      uses: elstudio/actions-settings@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   update_release_draft:
     runs-on: ubuntu-latest
     steps:
