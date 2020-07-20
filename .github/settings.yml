@@ -134,5 +134,6 @@ branches:
         # Required. Require branches to be up to date before merging.
         strict: true
         # Required. The list of status checks to require in order to merge into this branch
-        contexts: []
+        contexts:
+          - build
       restrictions: null
