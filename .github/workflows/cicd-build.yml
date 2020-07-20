@@ -1,0 +1,18 @@
+name: Classic CI/CD
+
+on:
+  push:
+    branches:
+      - "**"
+    tags-ignore:
+      - "*.*"
+  pull_request:
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: dummy action
+        run: |
+          echo "first test"
