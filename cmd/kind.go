@@ -83,6 +83,7 @@ nodes:
 	d1 := []byte(kindConfig)
 	configPath := path.Join(os.TempDir(), "kindconfig.yaml")
 	err := ioutil.WriteFile(configPath, d1, 0o644)
+	// #noerrcheck
 	defer os.Remove(configPath)
 	check(err)
 	return sh.Run("kind", "create", "cluster", fmt.Sprintf("--config=%s", configPath))
