@@ -23,7 +23,7 @@
         "cschleiden.vscode-github-actions",
         "davidanson.vscode-markdownlint",
         "docsmsft.docs-article-templates",
-        "docsmsft.docs-markdown",
+        //"docsmsft.docs-markdown",
         "eamodio.gitlens",
         "EditorConfig.EditorConfig",
         "golang.go",
@@ -32,7 +32,7 @@
         "hbenl.vscode-test-explorer",
         "IBM.output-colorizer",
         "jrebocho.vscode-random",
-        "mervin.markdown-formatter",
+        //"mervin.markdown-formatter",
         "mhutchie.git-graph",
         "mohsen1.prettify-json",
         "ms-azuretools.vscode-docker",
@@ -49,7 +49,8 @@
         "tyriar.sort-lines",
         "vscode-ext.sync-rsync",
         "vscode-icons-team.vscode-icons",
-        "vscoss.vscode-ansible"
+        "vscoss.vscode-ansible",
+        "tehnix.vscode-tidymarkdown"
 ],
     "settings": {
         "editor.formatOnSave": true,
@@ -60,6 +61,10 @@
             "ms-azuretools.vscode-docker": "workspace"
         },
         "python.pythonPath": "/home/vscode/.virtualenvs/development/bin/python",
-        "python.terminal.activateEnvInCurrentTerminal": true
+        "python.terminal.activateEnvInCurrentTerminal": true,
+        "markdownFormatter.spaceAfterFullWidthOrHalfWidth": "， -",
+        "[markdown]": {
+            "editor.defaultFormatter": "tehnix.vscode-tidymarkdown"
+          }
     }
 }

@@ -1,3 +1,4 @@
+---
 name: Classic CI/CD
 
 on:
@@ -8,11 +9,41 @@ on:
       - "*.*"
   pull_request:
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: EditorConfig-Action
+        uses: greut/eclint-action@v0
+
+      - name: yaml-lint
+        uses: ibiqlik/action-yamllint@v1
+        with:
+          config_file: .yamllint.yml
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          # The Go version to download (if necessary) and use.
+          go-version: 1.14
+      - uses: ynniss/golang-security-action@master
+  acc:
+    name: acc
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          # The Go version to download (if necessary) and use.
+          go-version: 1.14
 
-      - name: dummy action
-        run: |
-          echo "first test"
+      # Action from https://github.com/engineerd/setup-kind
+      # nolint:misspell
+      - uses: engineerd/setup-kind@v0.4.0
+        with:
+          skipClusterCreation: true
+      - run: go run mage.go kind:recreate

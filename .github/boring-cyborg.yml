@@ -1,3 +1,4 @@
+---
 labelPRBasedOnFilePath:
   cicd:
     - .github/workflows/**
