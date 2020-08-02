@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"path"
+	"strings"
 	"time"
 
 	"github.com/magefile/mage/mg"
@@ -86,5 +87,12 @@ nodes:
 	//nolint:errcheck
 	defer os.Remove(configPath)
 	check(err)
+
+	// check kind allways exists
+	out, err := sh.Output("kind", "get", "clusters", "-q")
+	check(err)
+	if strings.Contains(out, "kind") {
+		return sh.Run("kind", "export", "kubeconfig")
+	}
 	return sh.Run("kind", "create", "cluster", fmt.Sprintf("--config=%s", configPath))
 }
