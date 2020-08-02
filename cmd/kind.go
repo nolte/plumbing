@@ -42,7 +42,7 @@ func (Kind) Create(ctx context.Context) {
 	mg.CtxDeps(ctx, Kind.InstallIngress)
 }
 
-//InstallIngress to Cluster.
+// InstallIngress to Cluster.
 func (Kind) InstallIngress() error {
 	log.Printf("Install Ingress to Cluster")
 	url := fmt.Sprintf("https://raw.githubusercontent.com/kubernetes/ingress-nginx/ingress-nginx-%s/deploy/static/provider/kind/deploy.yaml", "2.11.1")
@@ -53,7 +53,6 @@ func (Kind) InstallIngress() error {
 		"--for=condition=ready", "pod",
 		"--selector=app.kubernetes.io/component=controller",
 		"--timeout=240s")
-
 }
 
 // InstallKind to local System .
@@ -80,7 +79,7 @@ nodes:
 `
 
 	d1 := []byte(kindConfig)
-	err := ioutil.WriteFile("/tmp/kindconfig.yaml", d1, 0644)
+	err := ioutil.WriteFile("/tmp/kindconfig.yaml", d1, 0o644)
 	defer os.Remove("/tmp/kindconfig.yaml")
 	check(err)
 	return sh.Run("kind", "create", "cluster", "--config=/tmp/kindconfig.yaml")
