@@ -8,6 +8,7 @@ import (
 	"github.com/magefile/mage/sh"
 )
 
+// GitHubWorkflow Mage Command Namespace.
 type GitHubWorkflow mg.Namespace
 
 func startActBuild(ctx context.Context) error {
@@ -15,7 +16,7 @@ func startActBuild(ctx context.Context) error {
 	return sh.Run("act", "-j", jobName, "-P", "ubuntu-latest=nektos/act-environments-ubuntu:18.04")
 }
 
-// StartJob the cluster
+// StartJob the cluster.
 func (GitHubWorkflow) StartJob(ctx context.Context) error {
 	log.Printf("Start Github Workflow")
 	return startActBuild(ctx)

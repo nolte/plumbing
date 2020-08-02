@@ -18,9 +18,10 @@ func check(e error) {
 	}
 }
 
+// Kind Mage Command Namespace.
 type Kind mg.Namespace
 
-// Delete the cluster
+// Delete the cluster-
 func (Kind) Delete() error {
 	log.Printf("Delete Kind Cluster")
 
@@ -55,7 +56,7 @@ func (Kind) InstallIngress() error {
 		"--timeout=240s")
 }
 
-// InstallKind to local System .
+// InstallKind to local System.
 func (Kind) InstallKind() error {
 	log.Printf("Create Cluster")
 	kindConfig := `
