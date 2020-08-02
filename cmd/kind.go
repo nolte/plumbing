@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"path"
 	"time"
 
 	"github.com/magefile/mage/mg"
@@ -21,7 +22,7 @@ func check(e error) {
 // Kind Mage Command Namespace.
 type Kind mg.Namespace
 
-// Delete the cluster-
+// Delete the cluster.
 func (Kind) Delete() error {
 	log.Printf("Delete Kind Cluster")
 
@@ -80,8 +81,9 @@ nodes:
 `
 
 	d1 := []byte(kindConfig)
-	err := ioutil.WriteFile("/tmp/kindconfig.yaml", d1, 0o644)
-	defer os.Remove("/tmp/kindconfig.yaml")
+	configPath := path.Join(os.TempDir(), "kindconfig.yaml")
+	err := ioutil.WriteFile(configPath, d1, 0o644)
+	defer os.Remove(configPath)
 	check(err)
-	return sh.Run("kind", "create", "cluster", "--config=/tmp/kindconfig.yaml")
+	return sh.Run("kind", "create", "cluster", fmt.Sprintf("--config=%s", configPath))
 }
