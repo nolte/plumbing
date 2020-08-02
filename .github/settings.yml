@@ -1,3 +1,4 @@
+---
 # These settings are synced to GitHub by https://probot.github.io/apps/settings/
 repository:
   # See https://developer.github.com/v3/repos/#edit for all available settings.
@@ -13,17 +14,17 @@ repository:
 
   # See https://developer.github.com/v3/repos/#edit for all available settings.
 
-#  # The name of the repository. Changing this will rename the repository
-#  name: terraform-provider-harbor
-#
-#  # A short description of the repository that will show up on GitHub
-#  description: Harbor Terraform Provider
-#
-#  # A URL with more information about the repository
-#  homepage: https://nolte.github.io/terraform-provider-harbor
-#
-#  # A comma-separated list of topics to set on the repository
-#  topics: terraform, terraform-provider, harbor, goharbor
+  #  # The name of the repository. Changing this will rename the repository
+  #  name: terraform-provider-harbor
+  #
+  #  # A short description of the repository that will show up on GitHub
+  #  description: Harbor Terraform Provider
+  #
+  #  # A URL with more information about the repository
+  #  homepage: https://nolte.github.io/terraform-provider-harbor
+  #
+  #  # A comma-separated list of topics to set on the repository
+  #  topics: terraform, terraform-provider, harbor, goharbor
 
   # Either `true` to make the repository private, or `false` to make it public.
   private: false
@@ -61,50 +62,49 @@ repository:
 # Labels: define labels for Issues and Pull Requests
 labels:
   - name: bug
-    color: '#CC0000'
+    color: "#CC0000"
     description: An issue with the system.
 
   - name: enhancement
     # If including a `#`, make sure to wrap it with quotes!
-    color: '#336699'
+    color: "#336699"
     description: New functionality.
 
   - name: chore
-    color: '#6e70ef'
+    color: "#6e70ef"
     description: Maintenance
 
   - name: question
-    color: '#3ffc8a'
+    color: "#3ffc8a"
     description: User question
 
   - name: documentations
-    color: '#caa7e8'
+    color: "#caa7e8"
     description: Update documentation
 
   - name: cicd
-    color: '#fbca04'
+    color: "#fbca04"
     description: ci/cd process functionality.
 
   - name: project-config
-    color: '#ed979d'
+    color: "#ed979d"
     description: Change GitHub project config, keep a extra eye on merge.
 
   - name: breaking-change
-    color: '#fc415d'
+    color: "#fc415d"
     description: Planed braking provider change.
 
   - name: duplicate
-    color: '#cfd3d7'
+    color: "#cfd3d7"
     description: This issue or pull request already exists.
 
   - name: dependencies
-    color: '#0366d6'
+    color: "#0366d6"
     description: Pull requests that update a dependency file.
 
   - name: wontfix
-    color: '#ffffff'
-    description: ''
-
+    color: "#ffffff"
+    description: ""
 
 branches:
   - name: master

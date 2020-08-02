@@ -1,21 +1,21 @@
-# editorconfig.org
 root = true
 
 [*]
-indent_style = space
-indent_size = 4
-end_of_line = lf
+insert_final_newline = true
 charset = utf-8
 trim_trailing_whitespace = true
-insert_final_newline = true
 
-[docs/**.md]
-# allow line break https://3os.org/markdownCheatSheet/lineBreaks/#line_break_with_2_spaces
+[{Makefile,go.mod,go.sum,.gitmodules}]
+indent_style = tab
+indent_size = 8
+
+[*.md]
+indent_style = space
+indent_size = 4
 trim_trailing_whitespace = false
 
-[{makefile,Makefile}]
-indent_style = tabs
+eclint_indent_style = unset
 
-[{*.yml,*.yaml, *.tf}]
+[Dockerfile]
 indent_style = space
-indent_size = 2
+indent_size = 4

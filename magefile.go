@@ -3,16 +3,24 @@
 package main
 
 import (
-	"github.com/magefile/mage/sh"
+	"context"
+
+	"github.com/magefile/mage/mg"
+
 	// mage:import
 	cmd "github.com/nolte/plumbing/cmd"
 )
 
-func Info() error {
-	return sh.Run(
-		"env")
+func GH(ctx context.Context) {
+	GHLint(ctx)
+	GHBuild(ctx)
+}
+func GHLint(ctx context.Context) {
+	ctx = context.WithValue(ctx, "jobName", "lint")
+	mg.CtxDeps(ctx, cmd.GitHubWorkflow.StartJob)
 }
 
-var Aliases = map[string]interface{}{
-	"all": cmd.Kind.Recreate,
+func GHBuild(ctx context.Context) {
+	ctx = context.WithValue(ctx, "jobName", "build")
+	mg.CtxDeps(ctx, cmd.GitHubWorkflow.StartJob)
 }

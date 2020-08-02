@@ -1,3 +1,4 @@
+---
 name-template: v$NEXT_PATCH_VERSION
 tag-template: release/v$NEXT_PATCH_VERSION
 branches:
@@ -10,11 +11,11 @@ categories:
     label: bug
   - title: 🧰 Maintenance
     labels:
-      - 'chore'
-      - 'documentations'
-      - 'project-config'
-      - 'cicd'
-      - 'dependencies'
+      - "chore"
+      - "documentations"
+      - "project-config"
+      - "cicd"
+      - "dependencies"
 
 template: |
   ## Changes
