@@ -8,7 +8,7 @@ import (
 	"github.com/magefile/mage/mg"
 
 	// mage:import
-	cmd "github.com/nolte/plumbing/cmd"
+	cmd "github.com/nolte/plumbing/cmd/github"
 )
 
 func GH(ctx context.Context) {

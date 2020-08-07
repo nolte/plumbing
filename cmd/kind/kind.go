@@ -1,4 +1,5 @@
-package cmd
+// Package kind commands
+package kind
 
 import (
 	"context"

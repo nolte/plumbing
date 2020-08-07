@@ -1,4 +1,5 @@
-package cmd
+// Package github for gh tasks
+package github
 
 import (
 	"context"
