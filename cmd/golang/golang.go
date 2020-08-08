@@ -51,7 +51,8 @@ func findGoFilesInFolder(startDirectory string) ([]string, error) {
 
 	return filearray, err
 }
-func workDircetories(ctx context.Context) (string, string) {
+
+func workDircetories(ctx context.Context) (baseDir, currentDir string) {
 	baseDir, ok := ctx.Value("basedir").(string)
 	if !ok {
 		baseDir = "."
@@ -61,9 +62,19 @@ func workDircetories(ctx context.Context) (string, string) {
 	return baseDir, dir
 }
 
+// StaticTests will be start the collection of static tests like lint and formatting.
+func (Golang) StaticTests(ctx context.Context) {
+	mg.CtxDeps(ctx, Golang.Lint)
+	mg.CtxDeps(ctx, Golang.CheckFmt)
+}
+
+// Lint start golangci-lint with your local config.
 func (Golang) Lint(ctx context.Context) error {
 	baseDir, currentDir := workDircetories(ctx)
-	os.Chdir(baseDir)
+	err := os.Chdir(baseDir)
+	check(err)
+
+	// nolint:errcheck
 	defer os.Chdir(currentDir)
 	return sh.Run("golangci-lint", "run")
 }
@@ -71,7 +82,10 @@ func (Golang) Lint(ctx context.Context) error {
 // Fmt will be autoformat the miss formatted files.
 func (Golang) Fmt(ctx context.Context) {
 	baseDir, currentDir := workDircetories(ctx)
-	os.Chdir(baseDir)
+	err := os.Chdir(baseDir)
+	check(err)
+
+	// nolint:errcheck
 	defer os.Chdir(currentDir)
 
 	filearray, err := findGoFilesInFolder(".")
@@ -86,7 +100,10 @@ func (Golang) Fmt(ctx context.Context) {
 // CheckFmt checking the sources with go gofmt.
 func (Golang) CheckFmt(ctx context.Context) error {
 	baseDir, currentDir := workDircetories(ctx)
-	os.Chdir(baseDir)
+	err := os.Chdir(baseDir)
+	check(err)
+
+	// nolint:errcheck
 	defer os.Chdir(currentDir)
 
 	filearray, err := findGoFilesInFolder(".")
