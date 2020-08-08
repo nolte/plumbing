@@ -3,22 +3,22 @@ package github
 
 import (
 	"context"
-	"log"
 
 	"github.com/magefile/mage/mg"
-	"github.com/magefile/mage/sh"
+	"github.com/nolte/plumbing/pkg"
 )
 
 // GitHubWorkflow Mage Command Namespace.
 type GitHubWorkflow mg.Namespace
 
-func startActBuild(ctx context.Context) error {
-	jobName := ctx.Value("jobName").(string)
-	return sh.Run("act", "-j", jobName, "-P", "ubuntu-latest=nektos/act-environments-ubuntu:18.04")
-}
-
-// StartJob the cluster.
+// StartJob Github Workflow
 func (GitHubWorkflow) StartJob(ctx context.Context) error {
-	log.Printf("Start Github Workflow")
-	return startActBuild(ctx)
+	jobName, ok := ctx.Value("jobName").(string)
+	if !ok {
+		jobName = "build"
+	}
+	job := pkg.ActJob{
+		Name: jobName,
+	}
+	return job.Execute()
 }

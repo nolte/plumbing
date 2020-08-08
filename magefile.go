@@ -15,6 +15,7 @@ import (
 // GitHubWorkflow Mage Command Namespace.
 type GitHubWorkflow mg.Namespace
 
+// All Targets in a pipeline.
 func All(ctx context.Context) {
 	mg.CtxDeps(ctx, golang.Golang.StaticTests)
 	mg.SerialCtxDeps(ctx, GitHubWorkflow.GH)
@@ -27,6 +28,8 @@ func (GitHubWorkflow) GH(ctx context.Context) {
 	mg.SerialCtxDeps(ctx, GitHubWorkflow.GHAcc)
 
 }
+
+// GHLint start the Github lint Workflow.
 func (GitHubWorkflow) GHLint(ctx context.Context) error {
 	job := pkg.ActJob{
 		Name: "lint",
@@ -34,12 +37,15 @@ func (GitHubWorkflow) GHLint(ctx context.Context) error {
 	return job.Execute()
 }
 
+// GHBuild start the Github build Workflow.
 func (GitHubWorkflow) GHBuild(ctx context.Context) error {
 	job := pkg.ActJob{
 		Name: "build",
 	}
 	return job.Execute()
 }
+
+// GHAcc start the Github acceptance tests Workflow.
 func (GitHubWorkflow) GHAcc(ctx context.Context) error {
 	job := pkg.ActJob{
 		Name: "acc",
