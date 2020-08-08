@@ -31,6 +31,12 @@ import (
 
 For more information about importing Targets take a look to the [Documentation](https://magefile.org/importing/).
 
+_Generate Binary_
+
+```sh
+mage -compile ./dist/static-output
+```
+
 ### Probot Remote Configs
 
 For Using in other Github Projects use the Probot Repo Config, more informations at [probot.github.io](https://probot.github.io/docs/best-practices/#configuration).

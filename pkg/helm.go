@@ -33,14 +33,15 @@ func (r HelmRepository) Add() error {
 }
 func HelmUpdateRepos() error {
 	return helmAction("repo", "update")
-
 }
+
 func (r HelmDeployment) Delete() error {
 	args := []string{
 		"delete",
 		r.ReleaseName,
 		"-n", r.Namespace,
 	}
+
 	return helmAction(args...)
 }
 
@@ -63,19 +64,17 @@ func (r HelmDeployment) Deploy() error {
 }
 
 func ApplyHelmChart(deployment HelmDeployment, matchLabels map[string]string) {
-	CreateNamesaceIfNotExists(deployment.Namespace)
+	_, err := CreateNamesaceIfNotExists(deployment.Namespace)
+	CheckError(err)
 
-	err := deployment.Chart.Repository.Add()
-	if err != nil {
-		panic(err.Error())
-	}
+	err = deployment.Chart.Repository.Add()
+	CheckError(err)
 
 	err = HelmUpdateRepos()
-	if err != nil {
-		panic(err.Error())
-	}
+	CheckError(err)
 
-	deployment.Deploy()
-	WaitPodReady(deployment.Namespace, matchLabels)
-
+	err = deployment.Deploy()
+	CheckError(err)
+	err = WaitPodReady(deployment.Namespace, matchLabels)
+	CheckError(err)
 }
