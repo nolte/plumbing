@@ -1,3 +1,4 @@
+---
 linters-settings:
   depguard:
     list-type: blacklist
@@ -27,7 +28,8 @@ linters-settings:
       - performance
       - style
     disabled-checks:
-      - dupImport # https://github.com/go-critic/go-critic/issues/845
+      # https://github.com/go-critic/go-critic/issues/845
+      - dupImport
       - ifElseChain
       - octalLiteral
       - whyNoLint
@@ -59,10 +61,14 @@ linters-settings:
   misspell:
     locale: US
   nolintlint:
-    allow-leading-space: true # don't require machine-readable nolint directives (i.e. with no leading space)
-    allow-unused: false # report any unused nolint directives
-    require-explanation: false # don't require an explanation for nolint directives
-    require-specific: false # don't require nolint directives to be specific about which linter is being skipped
+    # don't require machine-readable nolint directives (i.e. with no leading space)
+    allow-leading-space: true
+    # report any unused nolint directives
+    allow-unused: false
+    # don't require an explanation for nolint directives
+    require-explanation: false
+    # don't require nolint directives to be specific about which linter is being skipped
+    require-specific: false
 
 linters:
   # please, do not use `enable-all`: it's deprecated and will be removed soon.
@@ -108,18 +114,18 @@ linters:
     - varcheck
     - whitespace
 
-  # don't enable:
-  # - asciicheck
-  # - gochecknoglobals
-  # - gocognit
-  # - godot
-  # - godox
-  # - goerr113
-  # - maligned
-  # - nestif
-  # - prealloc
-  # - testpackage
-  # - wsl
+    # don't enable:
+    # - asciicheck
+    # - gochecknoglobals
+    # - gocognit
+    # - godot
+    # - godox
+    # - goerr113
+    # - maligned
+    # - nestif
+    # - prealloc
+    # - testpackage
+    # - wsl
 
 issues:
   # Excluding configuration per-path, per-linter, per-text and per-source

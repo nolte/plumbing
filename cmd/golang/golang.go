@@ -51,13 +51,29 @@ func findGoFilesInFolder(startDirectory string) ([]string, error) {
 
 	return filearray, err
 }
+func workDircetories(ctx context.Context) (string, string) {
+	baseDir, ok := ctx.Value("basedir").(string)
+	if !ok {
+		baseDir = "."
+	}
+	dir, err := os.Getwd()
+	check(err)
+	return baseDir, dir
+}
 
-func (Golang) Lint() error {
+func (Golang) Lint(ctx context.Context) error {
+	baseDir, currentDir := workDircetories(ctx)
+	os.Chdir(baseDir)
+	defer os.Chdir(currentDir)
 	return sh.Run("golangci-lint", "run")
 }
 
 // Fmt will be autoformat the miss formatted files.
 func (Golang) Fmt(ctx context.Context) {
+	baseDir, currentDir := workDircetories(ctx)
+	os.Chdir(baseDir)
+	defer os.Chdir(currentDir)
+
 	filearray, err := findGoFilesInFolder(".")
 	check(err)
 
@@ -69,6 +85,10 @@ func (Golang) Fmt(ctx context.Context) {
 
 // CheckFmt checking the sources with go gofmt.
 func (Golang) CheckFmt(ctx context.Context) error {
+	baseDir, currentDir := workDircetories(ctx)
+	os.Chdir(baseDir)
+	defer os.Chdir(currentDir)
+
 	filearray, err := findGoFilesInFolder(".")
 	check(err)
 

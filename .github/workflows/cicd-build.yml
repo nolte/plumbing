@@ -46,4 +46,4 @@ jobs:
       - uses: engineerd/setup-kind@v0.4.0
         with:
           skipClusterCreation: true
-      - run: go run mage.go kind:recreate
+      - run: go run mage.go -v

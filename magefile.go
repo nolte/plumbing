@@ -13,9 +13,11 @@ import (
 	_ "github.com/nolte/plumbing/cmd/golang"
 )
 
+// GH will be run the GitHub Actions Locally.
 func GH(ctx context.Context) {
 	GHLint(ctx)
 	GHBuild(ctx)
+	GHAcc(ctx)
 }
 func GHLint(ctx context.Context) {
 	ctx = context.WithValue(ctx, "jobName", "lint")
