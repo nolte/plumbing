@@ -2,6 +2,7 @@ package pkg
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/magefile/mage/sh"
 )
@@ -53,7 +54,7 @@ func (r HelmDeployment) Deploy() error {
 		"-n", r.Namespace}
 
 	if r.Chart.Version != "" {
-		args = append(args, "-v", r.Chart.Version)
+		args = append(args, "--version", r.Chart.Version)
 	}
 
 	for key, value := range r.ExtraValues {
@@ -65,7 +66,9 @@ func (r HelmDeployment) Deploy() error {
 
 func ApplyHelmChart(deployment HelmDeployment, matchLabels map[string]string) {
 	_, err := CreateNamesaceIfNotExists(deployment.Namespace)
-	CheckError(err)
+	if err != nil {
+		log.Printf("Namespace allways Exists")
+	}
 
 	err = deployment.Chart.Repository.Add()
 	CheckError(err)
