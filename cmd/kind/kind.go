@@ -1,4 +1,5 @@
-package cmd
+// Package kind commands
+package kind
 
 import (
 	"context"
@@ -13,6 +14,8 @@ import (
 	"github.com/magefile/mage/mg"
 	"github.com/magefile/mage/sh"
 )
+
+const waitTime = 30
 
 func check(e error) {
 	if e != nil {
@@ -48,10 +51,19 @@ func (Kind) Create(ctx context.Context) {
 // InstallIngress to Cluster.
 func (Kind) InstallIngress() error {
 	log.Printf("Install Ingress to Cluster")
-	url := fmt.Sprintf("https://raw.githubusercontent.com/kubernetes/ingress-nginx/ingress-nginx-%s/deploy/static/provider/kind/deploy.yaml", "2.11.1")
+
+	nginxVersion := "2.11.1"
+
+	urlReleaseBase := fmt.Sprintf(
+		"https://raw.githubusercontent.com/kubernetes/ingress-nginx/ingress-nginx-%s",
+		nginxVersion,
+	)
+
+	url := fmt.Sprintf("%s/deploy/static/provider/kind/deploy.yaml", urlReleaseBase)
 	err := sh.Run("kubectl", "apply", "-f", url, "--wait=true")
 	check(err)
-	time.Sleep(30 * time.Second)
+	time.Sleep(waitTime * time.Second)
+
 	return sh.Run("kubectl", "wait", "--namespace", "ingress-nginx",
 		"--for=condition=ready", "pod",
 		"--selector=app.kubernetes.io/component=controller",
@@ -61,6 +73,7 @@ func (Kind) InstallIngress() error {
 // InstallKind to local System.
 func (Kind) InstallKind() error {
 	log.Printf("Create Cluster")
+
 	kindConfig := `
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
@@ -84,15 +97,17 @@ nodes:
 	d1 := []byte(kindConfig)
 	configPath := path.Join(os.TempDir(), "kindconfig.yaml")
 	err := ioutil.WriteFile(configPath, d1, 0o600)
-	//nolint:errcheck
+
 	defer os.Remove(configPath)
 	check(err)
 
 	// check kind allways exists
 	out, err := sh.Output("kind", "get", "clusters", "-q")
 	check(err)
+
 	if strings.Contains(out, "kind") {
 		return sh.Run("kind", "export", "kubeconfig")
 	}
+
 	return sh.Run("kind", "create", "cluster", fmt.Sprintf("--config=%s", configPath))
 }

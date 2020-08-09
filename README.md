@@ -23,13 +23,19 @@ package main
 import (
     ...
     // mage:import
-    cmd "github.com/nolte/plumbing/cmd"
+    _ "github.com/nolte/plumbing/cmd/golang"
     ...
 )
 ...
 ```
 
 For more information about importing Targets take a look to the [Documentation](https://magefile.org/importing/).
+
+_Generate Binary_
+
+```sh
+mage -compile ./dist/static-output
+```
 
 ### Probot Remote Configs
 
