@@ -10,9 +10,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	// using golint from path call
-	_ "github.com/golangci/golangci-lint/pkg/commands"
-
 	"github.com/magefile/mage/mg"
 	"github.com/magefile/mage/sh"
 )
@@ -76,6 +73,7 @@ func (Golang) Lint(ctx context.Context) error {
 
 	// nolint:errcheck
 	defer os.Chdir(currentDir)
+
 	return sh.Run("golangci-lint", "run")
 }
 

@@ -25,8 +25,6 @@ func All(ctx context.Context) {
 func (GitHubWorkflow) GH(ctx context.Context) {
 	mg.SerialCtxDeps(ctx, GitHubWorkflow.GHBuild)
 	mg.SerialCtxDeps(ctx, GitHubWorkflow.GHLint)
-	mg.SerialCtxDeps(ctx, GitHubWorkflow.GHAcc)
-
 }
 
 // GHLint start the Github lint Workflow.
@@ -41,14 +39,6 @@ func (GitHubWorkflow) GHLint(ctx context.Context) error {
 func (GitHubWorkflow) GHBuild(ctx context.Context) error {
 	job := pkg.ActJob{
 		Name: "build",
-	}
-	return job.Execute()
-}
-
-// GHAcc start the Github acceptance tests Workflow.
-func (GitHubWorkflow) GHAcc(ctx context.Context) error {
-	job := pkg.ActJob{
-		Name: "acc",
 	}
 	return job.Execute()
 }
