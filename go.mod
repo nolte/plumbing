@@ -3,6 +3,7 @@ module github.com/nolte/plumbing
 go 1.14
 
 require (
+	github.com/evanphx/json-patch v4.2.0+incompatible // indirect
 	github.com/golang/protobuf v1.4.2 // indirect
 	github.com/google/go-cmp v0.5.0 // indirect
 	github.com/imdario/mergo v0.3.10 // indirect
@@ -20,8 +21,8 @@ require (
 	google.golang.org/protobuf v1.24.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
 	gopkg.in/yaml.v3 v3.0.0-20200605160147-a5ece683394c // indirect
-	k8s.io/api v0.18.6
-	k8s.io/apimachinery v0.18.6
-	k8s.io/client-go v0.18.6
+	k8s.io/api v0.18.8
+	k8s.io/apimachinery v0.18.8
+	k8s.io/client-go v0.18.8
 	k8s.io/utils v0.0.0-20200731180307-f00132d28269 // indirect
 )
