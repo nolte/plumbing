@@ -1,5 +1,10 @@
 package pkg
 
+import (
+	"encoding/json"
+	"strings"
+)
+
 func CheckError(err error) {
 	if err != nil {
 		panic(err)
