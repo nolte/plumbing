@@ -15,10 +15,8 @@ require (
 	google.golang.org/appengine v1.6.6 // indirect
 	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
 	gopkg.in/yaml.v3 v3.0.0-20200605160147-a5ece683394c // indirect
-	k8s.io/api v0.19.2
-	k8s.io/apimachinery v0.19.2
-	k8s.io/client-go v0.19.2
-	k8s.io/klog v1.0.0 // indirect
+	k8s.io/api v0.19.4
+	k8s.io/apimachinery v0.19.4
+	k8s.io/client-go v0.19.4
 	k8s.io/utils v0.0.0-20200731180307-f00132d28269 // indirect
-	sigs.k8s.io/structured-merge-diff/v3 v3.0.0 // indirect
 )
