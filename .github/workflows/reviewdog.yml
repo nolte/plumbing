@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: reviewdog/action-languagetool@v1
+      - uses: reviewdog/action-languagetool@v1.5
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-check
