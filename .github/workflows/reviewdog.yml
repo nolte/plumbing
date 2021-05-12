@@ -75,7 +75,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: eslint
-        uses: reviewdog/action-eslint@v1
+        uses: reviewdog/action-eslint@v1.12.3
         with:
           reporter: github-check
   alex:
