@@ -12,7 +12,7 @@ jobs:
     name: runner / golangci-lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: reviewdog/action-golangci-lint@v1
         with:
           github_token: ${{ secrets.github_token }}
@@ -25,7 +25,7 @@ jobs:
     name: runner / staticcheck
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: reviewdog/action-staticcheck@v1
         with:
           github_token: ${{ secrets.github_token }}
@@ -38,7 +38,7 @@ jobs:
     name: runner / misspell
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: reviewdog/action-misspell@v1
         with:
           github_token: ${{ secrets.github_token }}
@@ -50,7 +50,7 @@ jobs:
     name: runner / languagetool
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: reviewdog/action-languagetool@v1
         with:
           github_token: ${{ secrets.github_token }}
@@ -63,7 +63,7 @@ jobs:
     name: runner / yamllint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: yamllint
         uses: reviewdog/action-yamllint@v1
         with:
@@ -73,7 +73,7 @@ jobs:
     name: runner / eslint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: eslint
         uses: reviewdog/action-eslint@v1
         with:
@@ -82,7 +82,7 @@ jobs:
     name: runner / alex
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: reviewdog/action-alex@v1
         with:
           github_token: ${{ secrets.github_token }}
