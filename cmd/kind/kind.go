@@ -52,7 +52,7 @@ func (Kind) Create(ctx context.Context) {
 func (Kind) InstallIngress() error {
 	log.Printf("Install Ingress to Cluster")
 
-	nginxVersion := "2.11.1"
+	nginxVersion := "3.15.2"
 
 	urlReleaseBase := fmt.Sprintf(
 		"https://raw.githubusercontent.com/kubernetes/ingress-nginx/ingress-nginx-%s",
