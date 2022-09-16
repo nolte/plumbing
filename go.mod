@@ -6,7 +6,7 @@ require (
 	github.com/google/go-cmp v0.5.0 // indirect
 	github.com/imdario/mergo v0.3.10 // indirect
 	github.com/kr/text v0.2.0 // indirect
-	github.com/magefile/mage v1.10.0
+	github.com/magefile/mage v1.14.0
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/stretchr/testify v1.6.1 // indirect
 	golang.org/x/crypto v0.0.0-20200709230013-948cd5f35899 // indirect
@@ -18,7 +18,5 @@ require (
 	k8s.io/api v0.19.2
 	k8s.io/apimachinery v0.19.2
 	k8s.io/client-go v0.19.2
-	k8s.io/klog v1.0.0 // indirect
 	k8s.io/utils v0.0.0-20200731180307-f00132d28269 // indirect
-	sigs.k8s.io/structured-merge-diff/v3 v3.0.0 // indirect
 )
